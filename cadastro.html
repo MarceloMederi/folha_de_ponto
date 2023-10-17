@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="css/cadastro.css">
+</head>
+<body>
+    <form id="cadastroForms">
+        <div class="input-group">
+            <label for="nome">Nome</label>
+            <input type="text" name="nome" id="nome" required>
+        </div>
+
+        <div class="input-group">
+            <label for="email">E-mail</label>
+            <input type="email" name="email" id="email" required>
+        </div>
+
+        <div class="input-group">
+            <label for="data_nascimento">Data de Nascimento</label>
+            <input type="date" name="data_nascimento" id="data_nascimento" required>
+        </div>
+
+        <div class="input-group">
+            <label for="cidade">Cidade</label>
+            <input type="text" name="cidade" id="cidade" required>
+        </div>
+
+        <div class="input-group">
+            <label for="estado">Estado</label>
+            <input type="text" name="estado" id="estado" required>
+        </div>
+
+        <div class="input-group">
+            <label for="pais">País</label>
+            <input type="text" name="pais" id="pais" required>
+        </div>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <div id="resultado" style="display: none;">
+        <!-- As informações inseridas serão exibidas aqui -->
+    </div>
+
+    <script>
+        document.getElementById('cadastroForms').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const formData = {
+                nome: document.getElementById('nome').value,
+                email: document.getElementById('email').value,
+                dataNascimento: document.getElementById('data_nascimento').value,
+                cidade: document.getElementById('cidade').value,
+                estado: document.getElementById('estado').value,
+                pais: document.getElementById('pais').value
+            };
+
+            // Enviar os dados para o servidor
+            fetch('/salvar-dados', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Verificar a resposta do servidor
+                if (data === 'Dados salvos com sucesso.') {
+                    // Exibir a mensagem de confirmação
+                    document.getElementById('resultado').style.display = 'block';
+                    document.getElementById('cadastroForms').style.display = 'none';
+                } else {
+                    // Exibir uma mensagem de erro em caso de falha
+                    alert('Ocorreu um erro ao salvar os dados no servidor.');
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert('Ocorreu um erro ao enviar os dados para o servidor.');
+            });
+        });
+    </script>
+</body>
+</html>

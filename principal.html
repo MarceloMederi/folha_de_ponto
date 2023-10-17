@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Folha de ponto</title>
+    <link rel="stylesheet" href="css/principal.css">
+</head>
+<body>
+    <header>
+        <h1>Folha de Ponto</h1>
+    </header>
+
+    <main>
+        <section>
+            <button type="button" onclick="window.open('cadastro.html', '_blank');">Cadastrar</button>
+            <button type="button">Editar</button>
+            <button type="button">Excluir</button>
+            <button type="button">Listar Banco</button>
+        </section>
+
+        <section class="viewer">
+            <div id="tabela"></div>
+        </section>
+    </main>
+
+    <script>
+        // Função para extrair parâmetros da URL
+        function obterParametroDaURL(nome) {
+            const parametros = new URLSearchParams(window.location.search);
+            return parametros.get(nome);
+        }
+
+        // Verifica se há dados na URL
+        const dadosDaURL = obterParametroDaURL("dados");
+
+        if (dadosDaURL) {
+            // Injeta a tabela na página
+            document.getElementById("tabela").innerHTML = decodeURIComponent(dadosDaURL);
+        }
+    </script>
+</body>
+</html>
