@@ -6,45 +6,33 @@
     <title>FOLHA DE PONTO</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-
     <main>
         <section>
-
             <div class="div1">
-                <p>Digite seu usuario:</p> 
+                <p>Digite seu usuário:</p> 
                 <input type="text" id="usuario">
             </div>
-
             <div class="div2">
-                <p>Informe a sua senha:</p>
+                <p>Informe sua senha:</p>
                 <input type="password" id="senha">
             </div>
-
             <div class="div3">
                 <input type="button" value="Login" id="botao" onclick="login()">
             </div>
-        
         </section>
-        
     </main>
-
     <script>
-
         function login() {
-        var usuario = document.getElementById("usuario").value;
-        var senha = document.getElementById("senha").value;
-
-        if (usuario === "Admin" && senha === "webprog") {
-            alert("Login efetuado com sucesso!");
-            window.location.replace("principal.html");
-        } else {
-            alert("Usuário ou senha inválidos!");
+            var usuario = document.getElementById("usuario").value;
+            var senha = document.getElementById("senha").value;
+            if (usuario === "Admin" && senha === "webprog") {
+                alert("Login efetuado com sucesso!");
+                window.location.replace("principal.html");
+            } else {
+                alert("Usuário ou senha inválidos!");
+            }
         }
-        }
-
     </script>
-
 </body>
 </html>
